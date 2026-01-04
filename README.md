@@ -16,7 +16,7 @@ Paper Hub continuously curates research papers from HuggingFace’s daily releas
 - **Filter by topics**: general AI, computer vision, and related fields
 - **Structured notes** saved as Markdown files in the `papers` folder
 - **Links to alphaXiv entries** for quick access and reference
-- **Facilitates blog creation, related-paper searches, and text-to-speech workflows
+- **Facilitates blog creation, related-paper searches, and text-to-speech workflows**
 - **Dynamic LLM-generated tags** to facilitate paper discovery
 - **Hands-off operation** via GitHub Actions—no manual intervention required
 
