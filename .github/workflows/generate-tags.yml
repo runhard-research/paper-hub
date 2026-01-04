@@ -1,0 +1,49 @@
+name: Generate paper tags (owner only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-tags:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check actor (owner only)
+        run: |
+          echo "Triggered by: ${{ github.actor }}"
+          if [[ ! " runhard runhard-research " =~ " ${{ github.actor }} " ]]; then
+            echo "This workflow can only be run by the repository owner."
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tag generation
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/generate_tags.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          if git status --porcelain | grep .; then
+            git add papers/*.md
+            git commit -m "Add tags to papers (LLM-assisted)"
+            git push
+          else
+            echo "No changes to commit."
+          fi
