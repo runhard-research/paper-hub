@@ -234,7 +234,12 @@ timestamp,task,done
 2026/05/29 7:15:52,https://huggingface.co/papers/2605.26340,false
 2026/05/29 7:21:45,https://huggingface.co/papers/2605.28763,false
 2026/05/30 7:24:13,https://huggingface.co/papers/2605.30248,false
-2026/06/03 6:52:44,https://huggingface.co/papers/2605.30611,TRUE
-2026/06/03 6:57:02,https://huggingface.co/papers/2605.29588,TRUE
-2026/06/03 7:01:50,https://huggingface.co/papers/2605.30723,TRUE
-2026/06/03 7:06:40,https://huggingface.co/papers/2606.01414,TRUE
+2026/06/03 6:52:44,https://huggingface.co/papers/2605.30611,false
+2026/06/03 6:57:02,https://huggingface.co/papers/2605.29588,false
+2026/06/03 7:01:50,https://huggingface.co/papers/2605.30723,false
+2026/06/03 7:06:40,https://huggingface.co/papers/2606.01414,false
+2026/06/04 7:05:13,https://huggingface.co/papers/2606.02775,false
+2026/06/04 7:09:46,https://huggingface.co/papers/2606.00386,false
+2026/06/04 7:11:32,https://huggingface.co/papers/2605.30581,false
+2026/06/04 7:13:50,https://huggingface.co/papers/2606.03748,false
+2026/06/04 7:16:15,https://huggingface.co/papers/2605.27958,false
