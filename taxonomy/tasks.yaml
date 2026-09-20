@@ -1,0 +1,30 @@
+version: "1.0"
+tasks:
+  - {id: classification, name: "Classification"}
+  - {id: detection, name: "Detection"}
+  - {id: segmentation, name: "Segmentation"}
+  - {id: tracking, name: "Tracking"}
+  - {id: visual_question_answering, name: "Visual question answering"}
+  - {id: image_generation, name: "Image generation"}
+  - {id: video_generation, name: "Video generation"}
+  - {id: image_editing, name: "Image/video editing"}
+  - {id: speech_recognition, name: "Speech recognition"}
+  - {id: speech_generation, name: "Speech generation"}
+  - {id: text_generation, name: "Text generation"}
+  - {id: information_retrieval, name: "Information retrieval"}
+  - {id: question_answering, name: "Question answering"}
+  - {id: reasoning, name: "Reasoning"}
+  - {id: code_generation, name: "Code generation"}
+  - {id: agentic_tool_use, name: "Agentic tool use"}
+  - {id: planning, name: "Planning"}
+  - {id: 3d_reconstruction, name: "3D reconstruction"}
+  - {id: novel_view_synthesis, name: "Novel-view synthesis"}
+  - {id: 3d_scene_understanding, name: "3D scene understanding"}
+  - {id: pose_estimation, name: "Pose estimation"}
+  - {id: robot_manipulation, name: "Robot manipulation"}
+  - {id: robot_navigation, name: "Robot navigation"}
+  - {id: reinforcement_learning, name: "Reinforcement learning"}
+  - {id: model_compression, name: "Model compression"}
+  - {id: model_evaluation, name: "Model evaluation"}
+  - {id: data_curation, name: "Data curation"}
+  - {id: scientific_discovery, name: "Scientific discovery"}

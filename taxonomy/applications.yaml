@@ -1,0 +1,18 @@
+version: "1.0"
+applications:
+  - {id: general_purpose_ai, name: "General-purpose AI"}
+  - {id: software_engineering, name: "Software engineering"}
+  - {id: search_and_knowledge, name: "Search and knowledge work"}
+  - {id: content_creation, name: "Content creation"}
+  - {id: spatial_intelligence, name: "Spatial intelligence"}
+  - {id: robotics, name: "Robotics"}
+  - {id: autonomous_driving, name: "Autonomous driving"}
+  - {id: ar_vr, name: "AR/VR"}
+  - {id: healthcare, name: "Healthcare"}
+  - {id: biology, name: "Biology"}
+  - {id: chemistry_materials, name: "Chemistry and materials"}
+  - {id: climate_energy, name: "Climate and energy"}
+  - {id: finance, name: "Finance"}
+  - {id: education, name: "Education"}
+  - {id: cybersecurity, name: "Cybersecurity"}
+  - {id: accessibility, name: "Accessibility"}

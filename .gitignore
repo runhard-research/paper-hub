@@ -2,5 +2,6 @@ cat <<EOF > .gitignore
 .venv/
 __pycache__/
 *.pyc
+.classification_failures.json
 EOF
 

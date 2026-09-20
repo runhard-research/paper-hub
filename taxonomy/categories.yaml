@@ -1,0 +1,26 @@
+version: "1.0"
+description: "Primary research-domain taxonomy for Paper Hub. IDs are stable API values."
+classification_rules:
+  primary_category: {min: 1, max: 1}
+  categories: {min: 1, max: 3}
+  tasks: {min: 0, max: 5}
+  technologies: {min: 0, max: 5}
+  applications: {min: 0, max: 5}
+  tags: {min: 0, max: 8}
+categories:
+  - {id: ai_foundations, name: "AI Foundations", description: "Learning theory, optimization, representation learning, and general ML methods."}
+  - {id: large_language_models, name: "Large Language Models", description: "Language models, reasoning, agents, retrieval, and efficient LLM inference."}
+  - {id: multimodal_ai, name: "Multimodal AI", description: "Models combining language, vision, audio, video, or other modalities."}
+  - {id: computer_vision, name: "Computer Vision", description: "2D visual perception, recognition, detection, and image understanding."}
+  - {id: 3d_vision_geometry, name: "3D Vision & Geometry", description: "3D reconstruction, novel-view synthesis, geometry, and spatial understanding."}
+  - {id: image_video_generation, name: "Image & Video Generation", description: "Generative image, video, and visual editing models."}
+  - {id: speech_audio, name: "Speech & Audio", description: "Speech, music, audio generation, and acoustic understanding."}
+  - {id: robotics_embodied_ai, name: "Robotics & Embodied AI", description: "Robot learning, control, manipulation, navigation, and world interaction."}
+  - {id: reinforcement_learning, name: "Reinforcement Learning", description: "Sequential decision making, policy optimization, and planning."}
+  - {id: ai_agents, name: "AI Agents", description: "Autonomous agents, tool use, workflow execution, and multi-agent systems."}
+  - {id: ai_safety_alignment, name: "AI Safety & Alignment", description: "Alignment, robustness, interpretability, security, and trustworthy AI."}
+  - {id: evaluation_benchmarks, name: "Evaluation & Benchmarks", description: "Model assessment, datasets, benchmarks, and measurement methods."}
+  - {id: data_centric_ai, name: "Data-Centric AI", description: "Data curation, synthetic data, annotation, and data quality."}
+  - {id: efficient_ai_systems, name: "Efficient AI Systems", description: "Serving, compression, distributed training, hardware, and systems optimization."}
+  - {id: scientific_ai, name: "Scientific AI", description: "AI for science, biology, chemistry, physics, climate, and medicine."}
+  - {id: human_ai_interaction, name: "Human-AI Interaction", description: "Human factors, interfaces, education, creativity, and social impact."}

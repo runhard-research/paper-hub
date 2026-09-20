@@ -1,0 +1,26 @@
+version: "1.0"
+technologies:
+  - {id: transformer, name: "Transformer"}
+  - {id: diffusion_model, name: "Diffusion model"}
+  - {id: autoregressive_model, name: "Autoregressive model"}
+  - {id: vision_language_model, name: "Vision-language model"}
+  - {id: mixture_of_experts, name: "Mixture of experts"}
+  - {id: retrieval_augmented_generation, name: "Retrieval-augmented generation"}
+  - {id: tool_calling, name: "Tool calling"}
+  - {id: in_context_learning, name: "In-context learning"}
+  - {id: fine_tuning, name: "Fine-tuning"}
+  - {id: reinforcement_learning_from_feedback, name: "Reinforcement learning from feedback"}
+  - {id: self_supervised_learning, name: "Self-supervised learning"}
+  - {id: contrastive_learning, name: "Contrastive learning"}
+  - {id: knowledge_distillation, name: "Knowledge distillation"}
+  - {id: quantization, name: "Quantization"}
+  - {id: pruning, name: "Pruning"}
+  - {id: kv_cache, name: "KV cache optimization"}
+  - {id: gaussian_splatting, name: "Gaussian splatting"}
+  - {id: neural_radiance_fields, name: "Neural radiance fields"}
+  - {id: neural_rendering, name: "Neural rendering"}
+  - {id: graph_neural_network, name: "Graph neural network"}
+  - {id: symbolic_reasoning, name: "Symbolic reasoning"}
+  - {id: federated_learning, name: "Federated learning"}
+  - {id: synthetic_data, name: "Synthetic data"}
+  - {id: simulation, name: "Simulation"}
