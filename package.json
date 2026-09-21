@@ -1,0 +1,16 @@
+{
+  "name": "paper-hub",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.15.1",
+    "typescript": "^5.9.2",
+    "yaml": "^2.8.1"
+  }
+}

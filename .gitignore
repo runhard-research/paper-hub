@@ -3,5 +3,9 @@ cat <<EOF > .gitignore
 __pycache__/
 *.pyc
 .classification_failures.json
+node_modules/
+.npm-cache/
+dist/
+.astro/
 EOF
 

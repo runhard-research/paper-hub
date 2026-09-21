@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PaperCard from '../../components/PaperCard.astro';
+import { papers } from '../../lib/papers';
+import { categories } from '../../lib/taxonomy';
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { id: category.id }, props: { category } }));
+}
+const { category } = Astro.props;
+const categoryPapers = papers.filter((paper) => paper.classification.categories?.includes(category.id));
+---
+<BaseLayout title={`${category.name} · Paper Hub`}>
+  <p><a href="/">← Library</a></p>
+  <h1>{category.name}</h1>
+  {category.description && <p class="muted">{category.description}</p>}
+  <p>{categoryPapers.length} papers</p>
+  {categoryPapers.map((paper) => <PaperCard paper={paper} />)}
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PaperCard from '../../components/PaperCard.astro';
+import { papers, years } from '../../lib/papers';
+export function getStaticPaths() { return years.map((year) => ({ params: { year } })); }
+const { year } = Astro.params;
+const yearPapers = papers.filter((paper) => paper.folderYear === year);
+---
+<BaseLayout title={`${year} · Paper Hub`}>
+  <p><a href="/">← Library</a></p>
+  <h1>{year}</h1>
+  <p class="muted">Folder-based year view. Source files are not moved or altered.</p>
+  <p>{yearPapers.length} papers</p>
+  {yearPapers.map((paper) => <PaperCard paper={paper} />)}
+</BaseLayout>

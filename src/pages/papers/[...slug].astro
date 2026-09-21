@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { papers } from '../../lib/papers';
+import { categoryName } from '../../lib/taxonomy';
+export function getStaticPaths() { return papers.map((paper) => ({ params: { slug: paper.slug }, props: { paper } })); }
+const { paper } = Astro.props;
+const fields = [
+  ['Primary category', paper.classification.primary_category ? categoryName(paper.classification.primary_category) : undefined],
+  ['Categories', paper.classification.categories?.map(categoryName).join(', ')],
+  ['Tasks', paper.classification.tasks?.join(', ')],
+  ['Technologies', paper.classification.technologies?.join(', ')],
+  ['Applications', paper.classification.applications?.join(', ')],
+  ['Tags', paper.classification.tags?.map((tag) => `#${tag}`).join(' ')],
+  ['Published', paper.publishedAt],
+  ['arXiv ID', paper.arxivId],
+];
+---
+<BaseLayout title={`${paper.title} · Paper Hub`}>
+  <article>
+    <p><a href="/">← Library</a></p>
+    <h1>{paper.title}</h1>
+    {paper.authors.length > 0 && <p class="muted">{paper.authors.join(', ')}</p>}
+    {paper.summary && <p><strong>Summary.</strong> {paper.summary}</p>}
+    {paper.abstract && <><h2>Abstract</h2><p>{paper.abstract}</p></>}
+    <h2>Classification</h2>
+    <dl class="metadata">{fields.filter(([, value]) => value).map(([label, value]) => <><dt>{label}</dt><dd>{value}</dd></>)}</dl>
+    <p>{paper.arxivUrl && <a class="pill" href={paper.arxivUrl} target="_blank">arXiv</a>}{paper.pdfUrl && <a class="pill" href={paper.pdfUrl} target="_blank">PDF</a>}</p>
+    <h2>Source note</h2>
+    <div class="paper-body">{paper.body}</div>
+  </article>
+</BaseLayout>

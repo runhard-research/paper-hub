@@ -1,0 +1,30 @@
+---
+const { title = 'Paper Hub' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="A personal research-paper library." />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">Paper Hub</a>
+      <nav><a href="/">Library</a><a href="/#search">Search</a></nav>
+    </header>
+    <main><slot /></main>
+    <footer>Paper Hub · static research library</footer>
+  </body>
+</html>
+<style is:global>
+  :root { color: #1d2734; background: #f7f8fa; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  * { box-sizing: border-box; } body { margin: 0; } header, main, footer { max-width: 1180px; margin: auto; padding-left: 24px; padding-right: 24px; }
+  header { min-height: 72px; display: flex; align-items: center; justify-content: space-between; } .brand { color: #102a43; font-size: 1.25rem; font-weight: 750; text-decoration: none; }
+  nav { display: flex; gap: 18px; } a { color: #1f5f8b; } nav a { color: #52616b; text-decoration: none; } main { padding-bottom: 56px; } footer { color: #718096; border-top: 1px solid #dce3ea; padding-top: 24px; padding-bottom: 32px; font-size: .9rem; }
+  h1 { letter-spacing: -.03em; } h2 { margin-top: 2.4rem; } .muted { color: #66788a; } .pill { display: inline-block; background: #e6f0f7; color: #245776; border-radius: 999px; padding: .22rem .55rem; font-size: .8rem; margin: .16rem .24rem 0 0; text-decoration: none; }
+  .card { background: white; border: 1px solid #dce3ea; border-radius: 10px; padding: 18px; margin: 12px 0; } .card h3 { margin: 0 0 .45rem; font-size: 1.06rem; } .card h3 a { color: #172b4d; text-decoration: none; } .card p { margin: .45rem 0; line-height: 1.5; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); } .stat { background: #fff; border: 1px solid #dce3ea; padding: 18px; border-radius: 10px; } .stat strong { font-size: 1.55rem; display: block; }
+  input[type="search"] { width: 100%; border: 1px solid #aebdca; border-radius: 8px; padding: 13px; font: inherit; } .hidden { display: none; } .metadata dt { color: #66788a; font-size: .82rem; margin-top: 1rem; } .metadata dd { margin: .25rem 0; } article { max-width: 850px; } .paper-body { white-space: pre-wrap; line-height: 1.65; background: white; border: 1px solid #dce3ea; padding: 20px; border-radius: 10px; }
+</style>

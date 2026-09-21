@@ -1,0 +1,14 @@
+---
+import type { Paper } from '../lib/papers';
+import { categoryName } from '../lib/taxonomy';
+const { paper } = Astro.props as { paper: Paper };
+const labels = paper.classification.categories ?? [];
+const haystack = [paper.title, ...paper.authors, ...(paper.classification.tags ?? []), ...labels, ...(paper.classification.tasks ?? []), ...(paper.classification.technologies ?? []), ...(paper.classification.applications ?? [])].join(' ').toLowerCase();
+---
+<article class="card paper-card" data-search={haystack}>
+  <h3><a href={`/papers/${paper.slug}/`}>{paper.title}</a></h3>
+  {paper.summary && <p>{paper.summary}</p>}
+  <p class="muted">{paper.publishedAt ?? paper.folderYear}{paper.authors.length ? ` · ${paper.authors.join(', ')}` : ''}</p>
+  <div>{labels.map((id) => <a class="pill" href={`/categories/${id}/`}>{categoryName(id)}</a>)}</div>
+  <div>{(paper.classification.tags ?? []).map((tag) => <span class="pill">#{tag}</span>)}</div>
+</article>
