@@ -39,7 +39,20 @@ jobs:
       - name: Generate markdown files (only if CSV updated)
         run: |
           python scripts/generate_papers.py
+          
+      # Classify only newly generated, still-unclassified papers. If NIM cannot
+      # produce valid taxonomy IDs after its retries, do not commit a partial
+      # update; the next scheduled run will retry the same generated papers.
+      - name: Classify new papers with NVIDIA NIM
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: |
+          python scripts/classify_papers.py
 
+      - name: Validate classifications
+        run: |
+          python scripts/validate_classification.py
+      
        #変更があれば commit & push
       - name: Commit and push changes
         run: |
