@@ -30,7 +30,20 @@ const renderedSourceNote = await marked.parse(sourceNote, { gfm: true, breaks: f
     <h2>Classification</h2>
     <dl class="metadata">{fields.filter(([, value]) => value).map(([label, value]) => <><dt>{label}</dt><dd>{value}</dd></>)}</dl>
     <p>{paper.arxivUrl && <a class="pill" href={paper.arxivUrl} target="_blank">arXiv</a>}{paper.pdfUrl && <a class="pill" href={paper.pdfUrl} target="_blank">PDF</a>}</p>
+    {paper.arxivId && <section class="audio-section" data-audio-section>
+      <h2>Audio</h2>
+      <audio controls preload="metadata" data-audio-player>
+        <source src={`/audio/${encodeURIComponent(paper.arxivId)}`} type="audio/mpeg" />
+        Your browser does not support audio playback.
+      </audio>
+      <p class="muted">Audio is shown when an episode is available for this paper.</p>
+    </section>}
     <h2>Source note</h2>
     <div class="paper-body" set:html={renderedSourceNote}></div>
   </article>
 </BaseLayout>
+<script>
+  document.querySelectorAll<HTMLAudioElement>('[data-audio-player]').forEach((player) => {
+    player.addEventListener('error', () => player.closest<HTMLElement>('[data-audio-section]')?.classList.add('hidden'));
+  });
+</script>
