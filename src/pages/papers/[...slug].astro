@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { marked } from 'marked';
 import { papers } from '../../lib/papers';
 import { categoryName } from '../../lib/taxonomy';
 export function getStaticPaths() { return papers.map((paper) => ({ params: { slug: paper.slug }, props: { paper } })); }
@@ -14,6 +15,10 @@ const fields = [
   ['Published', paper.publishedAt],
   ['arXiv ID', paper.arxivId],
 ];
+// Source notes are repository Markdown, not HTML. Escape HTML first so a note
+// can never introduce a script or an arbitrary element into the static site.
+const sourceNote = paper.body.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const renderedSourceNote = await marked.parse(sourceNote, { gfm: true, breaks: false });
 ---
 <BaseLayout title={`${paper.title} · Paper Hub`}>
   <article>
@@ -26,6 +31,6 @@ const fields = [
     <dl class="metadata">{fields.filter(([, value]) => value).map(([label, value]) => <><dt>{label}</dt><dd>{value}</dd></>)}</dl>
     <p>{paper.arxivUrl && <a class="pill" href={paper.arxivUrl} target="_blank">arXiv</a>}{paper.pdfUrl && <a class="pill" href={paper.pdfUrl} target="_blank">PDF</a>}</p>
     <h2>Source note</h2>
-    <div class="paper-body">{paper.body}</div>
+    <div class="paper-body" set:html={renderedSourceNote}></div>
   </article>
 </BaseLayout>

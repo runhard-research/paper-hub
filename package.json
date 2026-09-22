@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.15.1",
+    "marked": "^16.0.0",
     "typescript": "^5.9.2",
     "yaml": "^2.8.1"
   }
