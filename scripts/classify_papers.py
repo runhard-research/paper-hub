@@ -21,7 +21,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ENDPOINT = "https://integrate.api.nvidia.com/v1"
-DEFAULT_MODEL = "nvidia/nemotron-3-super-120b-a12b"
+DEFAULT_MODEL = "nvidia/nemotron-3-ultra-550b-a55b"
 FAILURES_PATH = ROOT / ".classification_failures.json"
 FIELDS = ("categories", "tasks", "technologies", "applications")
 MAX_RETRIES = 5
@@ -169,7 +169,7 @@ class NimClient:
                 time.sleep(remaining)
 
     def complete(self, context: dict[str, str], catalog: dict[str, list[dict[str, str]]], summary: Counter[str]) -> dict[str, Any]:
-        base_payload = {"model": self.model, "temperature": 0, "messages": [
+        base_payload = {"model": self.model, "temperature": 0, "chat_template_kwargs": {"enable_thinking": False}, "messages": [
             {"role": "system", "content": schema_instruction(catalog)},
             {"role": "user", "content": json.dumps(context, ensure_ascii=False)},
         ]}
@@ -182,7 +182,7 @@ class NimClient:
             self._wait_between_requests()
             try:
                 self.last_request_at = time.monotonic()
-                response = self.session.post(f"{self.endpoint}/chat/completions", headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}, json=payload, timeout=120)
+                response = self.session.post(f"{self.endpoint}/chat/completions", headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}, json=payload, timeout=180)
             except requests.Timeout as exc:
                 raise ClassificationError("timeout", "NIM request timed out", True) from exc
             except requests.ConnectionError as exc:
