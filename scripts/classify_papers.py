@@ -168,10 +168,10 @@ class NimClient:
             if remaining > 0:
                 time.sleep(remaining)
 
-    def complete(self, context: dict[str, str], catalog: dict[str, list[dict[str, str]]], summary: Counter[str]) -> dict[str, Any]:
+    def complete(self, context: dict[str, str], catalog: dict[str, list[dict[str, str]]], summary: Counter[str], feedback=None) -> dict[str, Any]:
         base_payload = {"model": self.model, "temperature": 0, "chat_template_kwargs": {"enable_thinking": False}, "messages": [
             {"role": "system", "content": schema_instruction(catalog)},
-            {"role": "user", "content": json.dumps(context, ensure_ascii=False)},
+            {"role": "user", "content": json.dumps(context, ensure_ascii=False) + (("\n\n" + feedback) if feedback else "")},
         ]}
         # Prefer JSON mode. A 400 from a deployment that lacks response_format falls
         # back once to the prompt-enforced JSON contract.
@@ -232,11 +232,15 @@ def validate_result(result: dict[str, Any], allowed: dict[str, set[str]], rules:
 
 
 def classify_with_retries(context: dict[str, str], client: NimClient, allowed: dict[str, set[str]], rules: dict[str, dict[str, int]], catalog: dict[str, list[dict[str, str]]], summary: Counter[str]) -> dict[str, Any]:
+    feedback = None
     for attempt in range(MAX_RETRIES + 1):
         try:
-            result = client.complete(context, catalog, summary)
+            result = client.complete(context, catalog, summary, feedback)
             errors = validate_result(result, allowed, rules)
             if errors:
+                feedback = ("Your previous answer was rejected by validation: " + "; ".join(errors)
+                            + ". Use only IDs exactly as listed in the taxonomy. Do not invent IDs; "
+                            "remove or replace any ID that is not listed.")
                 raise ClassificationError("validation", "; ".join(errors), True)
             return result
         except ClassificationError as exc:
