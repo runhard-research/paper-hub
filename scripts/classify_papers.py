@@ -21,7 +21,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ENDPOINT = "https://integrate.api.nvidia.com/v1"
-DEFAULT_MODEL = "nvidia/nemotron-3-ultra-550b-a55b"
+DEFAULT_MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
 FAILURES_PATH = ROOT / ".classification_failures.json"
 FIELDS = ("categories", "tasks", "technologies", "applications")
 MAX_RETRIES = 5
