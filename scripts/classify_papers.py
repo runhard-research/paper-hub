@@ -192,7 +192,7 @@ class NimClient:
             if response.status_code == 400 and use_json_mode:
                 summary["structured_output_fallback"] += 1
                 continue
-            if response.status_code in (429, 502, 503):
+            if response.status_code in (429, 500, 502, 503):
                 raise ClassificationError(str(response.status_code), f"NIM HTTP {response.status_code}", True)
             if response.status_code >= 400:
                 raise ClassificationError("http", f"NIM HTTP {response.status_code}: {response.text[:300]}", False)
