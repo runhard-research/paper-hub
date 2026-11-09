@@ -27,6 +27,9 @@ const renderedSourceNote = await marked.parse(sourceNote, { gfm: true, breaks: f
     {paper.authors.length > 0 && <p class="muted">{paper.authors.join(', ')}</p>}
     {paper.summary && <p><strong>Summary.</strong> {paper.summary}</p>}
     {paper.abstract && <><h2>Abstract</h2><p>{paper.abstract}</p></>}
+    {paper.arxivId && <figure class="paper-image" data-paper-image>
+      <img src={`/images/${encodeURIComponent(paper.arxivId)}`} alt={`Visual summary for ${paper.title}`} loading="lazy" />
+    </figure>}
     <h2>Classification</h2>
     <dl class="metadata">{fields.filter(([, value]) => value).map(([label, value]) => <><dt>{label}</dt><dd>{value}</dd></>)}</dl>
     <p>{paper.arxivUrl && <a class="pill" href={paper.arxivUrl} target="_blank">arXiv</a>}{paper.pdfUrl && <a class="pill" href={paper.pdfUrl} target="_blank">PDF</a>}</p>
@@ -43,6 +46,9 @@ const renderedSourceNote = await marked.parse(sourceNote, { gfm: true, breaks: f
   </article>
 </BaseLayout>
 <script>
+  document.querySelectorAll<HTMLImageElement>('[data-paper-image] img').forEach((image) => {
+    image.addEventListener('error', () => image.closest<HTMLElement>('[data-paper-image]')?.classList.add('hidden'));
+  });
   document.querySelectorAll<HTMLAudioElement>('[data-audio-player]').forEach((player) => {
     player.addEventListener('error', () => player.closest<HTMLElement>('[data-audio-section]')?.classList.add('hidden'));
   });
